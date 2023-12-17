@@ -3,7 +3,6 @@ const router = app.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModal = require("../Model/user");
-require('dotenv').config()
 // console.log('env==>', process.env);
 
 // Get All Users
@@ -102,7 +101,7 @@ router.post("/login", async (req, res) => {
         // generate token
         const token = jwt.sign({
           data: myUser,
-        }, process.env.JWT_SECRET)
+        }, "vvnurtjvhnertfvmfbfhjbnmzhdnaibxiakuba")
         console.log(token)
 
         res.status(200).send({

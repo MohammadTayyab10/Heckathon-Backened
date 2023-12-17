@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 const express = require("express");
-const dotenv = require("dotenv");
 const userSchema = require("./Model/user.js")
 const cloudinary = require('cloudinary').v2;
 const port = 300
 const app = express()
-dotenv.config()
 const userRoutes = require('./routes/user.js')
 const attendenceRoutes = require('./routes/attendence.js')
 
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect("mongodb+srv://HACK:UrT6yInrNMtifGAN@cluster0.y1ebbpj.mongodb.net/", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
