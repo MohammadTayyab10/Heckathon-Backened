@@ -1,4 +1,13 @@
 { 
+   "headers": [
+     {
+       "source": "/user",
+       "headers": [
+         { "key": "Access-Control-Allow-Origin", "value": "http://localhost:3000" }
+       ]
+     }
+   ],
+ 
      "version": 2, 
      "name": "Backhend of Attendence", 
      "builds": [ 
@@ -7,4 +16,5 @@
      "routes": [ 
         { "src": "/(.*)", "dest": "/index.js" } 
      ] 
+  
    }

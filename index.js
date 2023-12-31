@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express = require("express");
+const cors = require('cors');  // <-- Add this line for CORS
 const userSchema = require("./Model/user.js")
 const cloudinary = require('cloudinary').v2;
 const port = 300
@@ -7,12 +8,20 @@ const app = express()
 const userRoutes = require('./routes/user.js')
 const attendenceRoutes = require('./routes/attendence.js')
 
+// CORS Configuration
+const corsOptions = {
+  origin: 'http://localhost:3000',  // Allow specific origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,                 // Allow cookies
+  optionsSuccessStatus: 204          // Return 204 status for preflight requests
+};
+
+app.use(cors(corsOptions));
 
 mongoose.connect("mongodb+srv://HACK:UrT6yInrNMtifGAN@cluster0.y1ebbpj.mongodb.net/", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-
     console.log("MongoDB connected");
 }).catch((error) => {
     console.error("MongoDB connection error:", error);
@@ -36,30 +45,7 @@ app.get('/', (req, res) => {
 
 app.use('/user', userRoutes)
 app.use('/attendence', attendenceRoutes)
-// Connecting
 
-
-
-
-
-
-// app.post("/user", async (req, res) => {
-//     const userBody = req.body;
-//     try {
-//         const newUser = new userSchema({ ...userBody });
-//         await newUser.save();
-//         res.status(200).send("User has been created!");
-//     } catch (error) {
-//         console.error("Error saving user:", error);
-//         res.status(500).send(error.message);
-//     }
-
-// });
-
-
-
-
-
-    app.listen(port, () => {
-        console.log('Server is running on port ' + port);
-    });
+app.listen(port, () => {
+    console.log('Server is running on port ' + port);
+});
