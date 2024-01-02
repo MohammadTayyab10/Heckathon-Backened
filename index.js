@@ -3,14 +3,14 @@ const express = require("express");
 const cors = require('cors');  // <-- Add this line for CORS
 const userSchema = require("./Model/user.js")
 const cloudinary = require('cloudinary').v2;
-const port = 300
+const port = 300;
 const app = express()
 const userRoutes = require('./routes/user.js')
 const attendenceRoutes = require('./routes/attendence.js')
 
 // CORS Configuration
 const corsOptions = {
-  origin: 'http://localhost:3000',  // Allow specific origin
+  origin: 'http://localhost:300',  // Allow specific origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,                 // Allow cookies
   optionsSuccessStatus: 204          // Return 204 status for preflight requests
@@ -39,7 +39,7 @@ cloudinary.config({
 app.get('/', (req, res) => {
     res.status(200).send({
         status: 200,
-        msg: 'ABCD'
+        msg: 'ABCD, Your Port is running'
     })
 })
 
